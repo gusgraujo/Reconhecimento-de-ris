@@ -1,0 +1,76 @@
+
+
+
+<Menu>:
+    BoxLayout:
+        orientation:'vertical'
+        padding:100
+        spacing:50
+        canvas:
+            Color:
+                rgba:.163 ,.176, .159 , 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Botao:
+            text:'Vizualizar'
+        
+        Botao:
+            text:'Cadastro'
+            on_release:app.root.current = 'cadastro'
+            
+        Botao:
+            text:'Comparar'
+        Botao:
+            text:'Sair'
+            on_release:root.confirmacao()
+            
+<Botao@ButtonBehavior+Label>:
+    canvas.before:
+        Color:
+            rgba:0.1,0.5,0.7,1
+        Ellipse:
+            pos:self.pos
+            size:self.height,self.height
+        Ellipse:
+            pos:self.x+self.width-self.height,self.y
+            size:self.height,self.height
+        Rectangle:
+            pos:self.x+self.height/2.0,self.y
+            size:self.width -self.height , self.height
+
+
+<Arquivo@BoxLayout>:
+    box: box_img
+    b_t: b_t
+    orientation: " vertical"
+    BoxLayout:
+        id: box_img
+        ii: '1.png'
+        canvas:
+            Rectangle:
+                source: self.ii
+                pos: root.pos
+                size: root.size
+    BoxLayout:
+        width: root.width
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x:1
+            Button:
+                pos: self.pos
+                text: 'Pick file'
+                on_release: root.choose()
+            Button:
+                pos: self.pos
+                text: 'Directory'
+                on_release: root.choose_d()
+        Label:
+            color: 0, 0, 0, 1
+            size_hint_x:9
+            id: b_t
+            ii: 'The thing you choosed'
+            text: self.ii
+            haling: 0
+
+    
